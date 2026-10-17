@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'none';">
+<title>VELTRIX — Local Workspace</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">V</div><div><strong>VELTRIX</strong><small>LOCAL WORKSPACE</small></div></div>
+    <div class="side-label">ARBEITSBEREICH</div>
+    <button class="nav-item active" data-view="home">⌂ <span>Übersicht</span></button>
+    <button class="nav-item" data-view="files">▤ <span>Meine Dateien</span></button>
+    <button class="nav-item" data-view="favorites">☆ <span>Favoriten</span></button>
+    <button class="nav-item" data-view="categories">▦ <span>Kategorien</span></button>
+    <button class="nav-item" data-view="settings">⚙ <span>Einstellungen</span></button>
+    <div class="sidebar-bottom"><i></i><div><b>Lokaler Modus</b><small>Deine Daten bleiben hier</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><span class="eyebrow">PERSÖNLICHER ARBEITSBEREICH</span><h1 id="pageTitle">Übersicht</h1></div><div class="local-pill"><i></i> NUR LOKAL</div></header>
+    <section class="view active" id="view-home">
+      <div class="hero"><div class="hero-copy"><span class="eyebrow">VELTRIX / PRIVATE SPACE</span><h2>Dein digitaler<br><em>Arbeitsbereich.</em></h2><p>Finde deine Projekte und Dokumente schneller. Organisiere Dateien mit Kategorien und Favoriten – ohne Konto und ohne Cloud.</p><button class="primary" data-go="files">Dateien organisieren <span>↗</span></button></div><div class="hero-art"><div class="orb"></div><div class="orbit"></div><div class="shield">V</div></div><div class="hero-index">01 <span>/ 05</span></div></div>
+      <div class="section-heading"><div><span class="eyebrow">SCHNELLZUGRIFF</span><h3>Dein Workspace</h3></div><span class="muted" id="homeCount">0 gespeicherte Einträge</span></div>
+      <div class="cards">
+        <button class="feature-card" data-go="files"><div class="card-icon">▤</div><span class="card-tag">BIBLIOTHEK</span><h4>Meine Dateien</h4><p>Füge Dateien hinzu und finde sie über die Suche wieder.</p><b>→</b></button>
+        <button class="feature-card" data-go="favorites"><div class="card-icon">☆</div><span class="card-tag">SCHNELLZUGRIFF</span><h4>Favoriten</h4><p>Markiere wichtige Projekte und Dokumente.</p><b>→</b></button>
+        <button class="feature-card" data-go="categories"><div class="card-icon">▦</div><span class="card-tag">ORDNUNG</span><h4>Kategorien</h4><p>Sortiere deine Einträge nach eigenen Bereichen.</p><b>→</b></button>
+      </div>
+      <div class="tip"><b>Hinweis</b><span>VELTRIX speichert hier Dateinamen und deine Organisation – nicht die Dateien selbst. Die Originaldateien bleiben an ihrem bisherigen Speicherort.</span></div>
+      <footer>VELTRIX <span>•</span> LOCAL-FIRST WORKSPACE <span class="right">BUILD 01.1</span></footer>
+    </section>
+    <section class="view" id="view-files">
+      <div class="intro"><div><span class="eyebrow">DATEIBIBLIOTHEK</span><h2>Meine Dateien</h2><p>Füge Dateien oder ganze Ordner als Einträge hinzu. Suche, Kategorien und Favoriten helfen dir, den Überblick zu behalten.</p></div><div class="vault-symbol">▤</div></div>
+      <div class="toolbar"><input id="searchInput" type="search" placeholder="Dateien durchsuchen …" aria-label="Dateien durchsuchen"><button class="primary" id="addFilesBtn">＋ Dateien hinzufügen</button><button class="secondary" id="addFolderBtn">Ordner hinzufügen</button><input id="filePicker" type="file" multiple hidden><input id="folderPicker" type="file" webkitdirectory multiple hidden></div>
+      <div class="filter-row"><label for="categoryFilter">Kategorie</label><select id="categoryFilter"><option value="all">Alle Kategorien</option></select><span class="muted" id="fileCount">0 Einträge</span></div>
+      <div id="fileList" class="file-list"></div>
+      <div class="empty-state" id="emptyState"><div class="empty-icon">＋</div><h3>Noch keine Dateien hinzugefügt</h3><p>Wähle Dateien oder einen Ordner aus. VELTRIX speichert nur die Einträge und Kategorien in diesem Browser.</p><button class="secondary" id="emptyAddBtn">Ersten Eintrag hinzufügen</button></div>
+    </section>
+    <section class="view" id="view-favorites"><div class="intro"><div><span class="eyebrow">SCHNELLZUGRIFF</span><h2>Favoriten</h2><p>Deine markierten Dateien auf einen Blick.</p></div><div class="vault-symbol">☆</div></div><div id="favoriteList" class="file-list"></div><div class="empty-state" id="favoriteEmpty"><div class="empty-icon">☆</div><h3>Noch keine Favoriten</h3><p>Markiere Dateien mit dem Stern, um sie hier schnell wiederzufinden.</p><button class="secondary" data-go="files">Zu meinen Dateien</button></div></section>
+    <section class="view" id="view-categories"><div class="intro"><div><span class="eyebrow">ORGANISATION</span><h2>Kategorien</h2><p>Ordne deine Dateien deinen eigenen Bereichen zu.</p></div><div class="vault-symbol">▦</div></div><div class="category-grid" id="categoryGrid"></div><div class="panel category-add"><h3>Eigene Kategorie erstellen</h3><p>Erstelle einen Bereich, der zu deinen Projekten passt.</p><div class="inline-form"><input id="newCategory" type="text" maxlength="32" placeholder="z. B. Schule, Projekte, Privat"><button class="primary" id="addCategoryBtn">Kategorie hinzufügen</button></div><p class="result" id="categoryMessage"></p></div></section>
+    <section class="view" id="view-settings"><div class="intro"><div><span class="eyebrow">ANWENDUNG</span><h2>Einstellungen</h2><p>Kontrolliere deine lokal gespeicherten Workspace-Daten.</p></div><div class="vault-symbol">⚙</div></div><div class="privacy-list"><div><b>✓</b><section><h3>Lokale Speicherung</h3><p>Einträge und Kategorien werden in diesem Browser auf diesem Gerät gespeichert. Es wird kein Server kontaktiert.</p></section></div><div><b>i</b><section><h3>Was wird gespeichert?</h3><p>Dateiname, optionaler Pfad aus dem ausgewählten Ordner, Kategorie, Favoritenstatus und Erstellungszeit. Die eigentlichen Dateien werden nicht kopiert oder hochgeladen.</p></section></div><div><b>!</b><section><h3>Browserdaten löschen</h3><p>Wenn du die Website-Daten dieses Browsers löschst oder einen anderen Browser verwendest, können die gespeicherten Einträge verschwinden. Die Originaldateien bleiben unberührt.</p><button class="danger" id="clearDataBtn">Workspace-Einträge löschen</button></section></div></div></section>
+  </main>
+</div>
+<dialog id="editDialog"><form method="dialog" id="editForm"><div class="dialog-head"><div><span class="eyebrow">EINTRAG BEARBEITEN</span><h3 id="editName">Datei</h3></div><button class="icon-button" value="cancel" aria-label="Schließen">×</button></div><label for="editCategory">Kategorie</label><select id="editCategory"></select><label for="editNote">Notiz (optional)</label><input id="editNote" maxlength="140" placeholder="Kurze Notiz zum Eintrag"><div class="dialog-actions"><button class="secondary" value="cancel">Abbrechen</button><button class="primary" id="saveEditBtn" value="default">Speichern</button></div></form></dialog>
+<script src="app.js"></script>
+</body></html>
